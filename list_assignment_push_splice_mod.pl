@@ -44,5 +44,6 @@ if ($invalidPlayers)
 	{
 		printf("%s: %s\n", $INVALID_PLAYERS[$i], $INVALID_TYPES[$i]);
 	}
+	print("INVALID MAGIC TYPES: @INVALID_TYPES\n");
 }
 		
