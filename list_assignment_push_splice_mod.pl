@@ -5,7 +5,6 @@
 
 foreach $player (@players)
 {
-	$arraySize++;
 	push(@PLAYERS, $player);
 }
 
@@ -16,7 +15,7 @@ foreach $type (@magic)
 
 #loop through and just remove invalid elements
 $ii = 0; #index for invalid players arrays
-for ($i=0; $i<$arraySize; $i++)
+for ($i=0; $i<@PLAYERS; $i++)
 {
 	#anything other than Fire, Water, Lightning or Shadow must be invalid
 	if ( $TYPES[$i] !~ "Fire|Water|Shadow|Lightning|None" )
@@ -24,27 +23,24 @@ for ($i=0; $i<$arraySize; $i++)
 		#the below splice removes 1 element at position $i 
 		$INVALID_PLAYERS[$ii] = splice @PLAYERS, $i, 1;
 		$INVALID_TYPES[$ii] = splice @TYPES, $i, 1;
-		$invalidPlayers++;
 		$ii++;
-		$arraySize--; #the array's size has now been reduced by 1
 	}
 }
 
 #now loop through and display the final array, up to the arraySize position
 printf("VALID PLAYERS:\n");
-for ($i=0; $i<$arraySize; $i++)
+for ($i=0; $i<@PLAYERS; $i++)
 {
 	printf("%s: %s\n", $PLAYERS[$i], $TYPES[$i]);	
 }
 
-if ($invalidPlayers)
+if (@INVALID_PLAYERS)
 {
 	printf("\nINVALID PLAYERS:\n");
-	for ($i=0; $i<$invalidPlayers; $i++)
+	for ($i=0; $i<@INVALID_PLAYERS; $i++)
 	{
 		printf("%s: %s\n", $INVALID_PLAYERS[$i], $INVALID_TYPES[$i]);
 	}
 	@REVERSED_INVALID_TYPES = reverse(@INVALID_TYPES);
 	print("INVALID MAGIC TYPES: @REVERSED_INVALID_TYPES\n");
 }
-		
