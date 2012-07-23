@@ -1,7 +1,10 @@
 #!/usr/bin/perl
 
-@players = qw(Crono Marle Ayla Fabulous Lucca Magus Paul Frog Robo);
-@magic = qw(Lightning Water None Gay Fire Shadow Unix Water Shadow);
+printf("Enter some player names:\n");
+printf("(CTRL+D to terminate input on a blank line)\n");
+chomp (@players = <STDIN>);
+printf("Enter their respective magic types:\n");
+chomp(@magic = <STDIN>);
 
 foreach $player (@players)
 {
@@ -33,6 +36,7 @@ for ($i=0; $i<@PLAYERS; $i++)
 {
 	printf("%s: %s\n", $PLAYERS[$i], $TYPES[$i]);	
 }
+
 
 if (@INVALID_PLAYERS)
 {
